@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_task_description.*
 import java.lang.reflect.Array.set
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class TaskDescription : Fragment() {
@@ -23,11 +26,7 @@ class TaskDescription : Fragment() {
         super.onStart()
 
         arguments?.getString("date")?.let {
-//            val dt = Instant.ofEpochSecond(it.toLong()).atZone(ZoneId.systemDefault()).toLocalDateTime()
-            val cal : Calendar = Calendar.getInstance()
-            val date = SimpleDateFormat("dd.MM.yyyy hh:mm").format()
-
-//            tv_date.text = date.toString()
+            tv_date.text = it
         }
     }
 
@@ -35,4 +34,7 @@ class TaskDescription : Fragment() {
 
 }
 
-//val dt = Instant.ofEpochSecond(1510500494).atZone(ZoneId.systemDefault()).toLocalDateTime()
+//            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm");
+//            val instant = Instant.ofEpochMilli(it.toLong())
+//            val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
+//            val str = formatter.format(date)
