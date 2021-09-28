@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "date_start": "1632052800000",
+    "date_finish": "1632056400000",
+    "name": "Hospital",
+    "description": "Прием у врача"
+  },
+  {
+    "id": 1,
+    "date_start": "1631894400000",
+    "date_finish": "1631898000000",
+    "name": "Сдать отчет",
+    "description": ""
+  }
+]

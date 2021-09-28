@@ -1,7 +1,6 @@
 package com.stark.calendarkotlin
 
 import android.content.Context
-import android.widget.CalendarView
 import java.io.IOException
 import java.time.Instant
 import java.time.LocalDateTime
@@ -20,29 +19,18 @@ fun getJsonFromAssets(context: Context, fileName: String): String? {
     return jsonString
 }
 
-fun formatDate(str: String): String {
+fun formatDate(str: Long): String {
     val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")
-    val instant = Instant.ofEpochMilli(str.toLong())
+    val instant = Instant.ofEpochMilli(str)
     val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
-    val myDate = formatter.format(date)
-    return myDate
+    return formatter.format(date).substring(0,10)
 }
 
-//fun getOneDayPicker(calendarView: CalendarView): Long {
-//    var str = ""
-//    calendarView.setOnDateChangeListener { view, y, m, d ->
-//        str = d.toString() + "." + m.toString() + "." + y.toString()
-//    }
-//    return str
-//}
-
-fun getOneDayPicker(calendarView: CalendarView): Long {
-    var date : Long = 0
-    calendarView.setOnDateChangeListener{view,_,_,_ ->
-        date = calendarView.date
-        println(date)
-    }
-    return date
+fun formatTime(str: Long): String {
+    val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")
+    val instant = Instant.ofEpochMilli(str)
+    val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
+    return formatter.format(date).substring(11,16)
 }
 
 

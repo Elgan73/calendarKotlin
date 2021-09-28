@@ -10,38 +10,46 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CalendarFragment : Fragment() {
 
-    private var taskAdapter: RVCalendarAdapter? = null
+    private lateinit var taskAdapter: RVCalendarAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_calendar, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        calendar.firstDayOfWeek = 2
         initRecyclerView()
+        calendar.setFirstDayOfWeek(Calendar.MONDAY)
+        calendar.refreshCalendar(Calendar.getInstance(Locale.getDefault()))
+
+
     }
 
-
-    private fun addData(date: Long) {
-
+    private fun receiveData(str: String) {
         val jsonFileString = getJsonFromAssets(requireContext(), "tasks.json")
         val gson = Gson()
         val listOfTasksType = object : TypeToken<List<Tasks>>() {}.type
         val tasks: List<Tasks> = gson.fromJson(jsonFileString, listOfTasksType)
-        for (i in tasks) {
-            if (i.date_start?.toLong() == date) {
-                taskAdapter?.submitData(tasks)
+        val tmp : MutableList<Tasks> = mutableListOf()
+        tasks.forEach {
+            val dt = formatDate(it.date_start)
+            if (dt == str) {
+                tmp.addAll(listOf(it))
+                taskAdapter.submitData(tmp)
+            } else {
+                taskAdapter.submitData(tmp)
             }
         }
     }
+
+
 
 
 
@@ -56,12 +64,12 @@ class CalendarFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        addData(getOneDayPicker(calendar))
-
-//        addNewTask.setOnClickListener {
-//            val bundle = Bundle()
-//            bundle.putString("date", calendar.date.toString())
-//            (activity as MainActivity).navController.navigate(R.id.action_calendarFragment_to_taskDescription, bundle)
-//        }
+        calendar.setOnDateClickListener {
+            receiveData(formatDate(it.time))
+        }
+        addNewTask.setOnClickListener {
+            (activity as MainActivity).navController.navigate(R.id.action_calendarFragment_to_newTaskFragment)
+        }
     }
 }
+
