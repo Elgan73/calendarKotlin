@@ -2,8 +2,6 @@ package com.stark.calendarkotlin
 
 import android.content.Context
 import android.widget.TextView
-import com.google.gson.Gson
-import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -45,10 +43,6 @@ fun Int.length() = when(this) {
     else -> log10(abs(toDouble())).toInt() + 1
 }
 
-fun fromTvToString(tv: TextView) : String{
-    return tv.text.toString()
-}
-
 fun fromTimeToMilli2(t: TextView) : Long {
     val tmp = t.text.toString()
     val time = SimpleDateFormat("hh:mm", Locale.getDefault()).parse(tmp)
@@ -67,10 +61,10 @@ fun fromTextViewToLongTimestamp(time: TextView, date: TextView): Long {
     return parseDate + parseTime
 }
 
-fun saveData(task: Tasks, fileName: String) {
-    val gson = Gson()
-    val jsonString = gson.toJson(task)
-    val file = File(fileName)
-    file.writeText(jsonString)
-}
+//fun saveData(task: Tasks, fileName: String) {
+//    val gson = Gson()
+//    val jsonString = gson.toJson(task)
+//    val file = File(fileName)
+//    file.writeText(jsonString)
+//}
 

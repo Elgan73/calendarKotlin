@@ -51,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="30dp"
-        android:contentDescription="Add new task" />
+        android:contentDescription="@string/add_new_task" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

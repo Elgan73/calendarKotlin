@@ -6,15 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.akexorcist.snaptimepicker.SnapTimePickerDialog
-import com.akexorcist.snaptimepicker.TimeRange
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_newtask.*
-import java.io.File
-import java.lang.Math.abs
-import java.lang.Math.log10
-import kotlin.random.Random
 
 class NewTaskFragment : Fragment() {
 
@@ -48,12 +41,12 @@ class NewTaskFragment : Fragment() {
                     var hour = h.toString()
                     var minute = m.toString()
                     if (h.length() < 2) {
-                        hour = "0" + hour
+                        hour = "0$hour"
                     }
                     if (m.length() < 2) {
-                        minute = "0" + minute
+                        minute = "0$minute"
                     }
-                    timeStartPicker.text = hour + ":" + minute
+                    timeStartPicker.text = getString(R.string.concatenateHoursAndMinutes, hour, minute)
                 }
             }
         }
@@ -66,12 +59,12 @@ class NewTaskFragment : Fragment() {
                     var hour = h.toString()
                     var minute = m.toString()
                     if (h.length() < 2) {
-                        hour = "0" + hour
+                        hour = "0$hour"
                     }
                     if (m.length() < 2) {
-                        minute = "0" + minute
+                        minute = "0$minute"
                     }
-                    timeEndPicker.text = hour + ":" + minute
+                    timeEndPicker.text = getString(R.string.concatenateHoursAndMinutes, hour, minute)
                 }
             }
         }

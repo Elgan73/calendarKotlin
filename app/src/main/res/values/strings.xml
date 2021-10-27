@@ -9,4 +9,14 @@
     <string name="timeEnd">00:00</string>
     <string name="title">Title</string>
     <string name="_10_10_2021">10.10.2021</string>
+    <string name="add_new_task">Add new task</string>
+    <string name="_16_00">16:00</string>
+    <string name="_17_00">17:00</string>
+    <string name="my_task_1">My Task 1</string>
+    <string name="description_of_my_business">Description of my business</string>
+    <string name="alarm_icon">Alarm Icon</string>
+    <string name="delimeter">Delimeter</string>
+    <string name="hoursDelimeter">:</string>
+    <string name="concatenateHoursAndMinutes">%1$s:%2$s</string>
+
 </resources>

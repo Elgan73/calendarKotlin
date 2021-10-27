@@ -13,8 +13,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:text="16:00"
-        android:textSize="18dp"
+        android:text="@string/_16_00"
+        android:textSize="18sp"
         android:textStyle="bold"/>
 
     <ImageView
@@ -23,15 +23,16 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/start"
         app:layout_constraintTop_toTopOf="@id/start"
-        android:src="@drawable/ic_baseline_remove_24"/>
+        android:src="@drawable/ic_baseline_remove_24"
+        android:contentDescription="@string/delimeter" />
 
     <TextView
         android:id="@+id/finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="17:00"
-        android:textSize="18dp"
+        android:text="@string/_17_00"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/delimiter"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -40,7 +41,7 @@
         android:id="@+id/task_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Task 1"
+        android:text="@string/my_task_1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/start"
         app:layout_constraintTop_toBottomOf="@id/start"/>
@@ -51,7 +52,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/task_label"
         app:layout_constraintTop_toBottomOf="@id/task_label"
-        android:text="Description of my business"/>
+        android:text="@string/description_of_my_business"/>
 
     <ImageView
         android:id="@+id/alarm_icon"
@@ -61,7 +62,8 @@
         app:layout_constraintTop_toBottomOf="@id/task_desc"
         android:layout_marginTop="4dp"
         android:visibility="visible"
-        android:src="@drawable/notification_alert_calendar_10"/>
+        android:src="@drawable/notification_alert_calendar_10"
+        android:contentDescription="@string/alarm_icon" />
 
     <View
         android:layout_width="match_parent"
