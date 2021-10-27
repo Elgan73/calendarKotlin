@@ -6,10 +6,22 @@
 
 
     <TextView
+        android:id="@+id/todayDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_10_10_2021"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"/>
+
+
+    <TextView
         android:id="@+id/labelStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start: "
+        android:text="@string/start"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,14 +35,14 @@
         app:layout_constraintStart_toEndOf="@id/labelStart"
         android:layout_marginStart="20dp"
         android:textSize="25sp"
-        android:text="00:00"
+        android:text="@string/timeStart"
         app:layout_constraintTop_toTopOf="@id/labelStart"/>
 
     <TextView
         android:id="@+id/labelEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="End: "
+        android:text="@string/end"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="@id/labelStart"
         app:layout_constraintTop_toBottomOf="@id/labelStart"
@@ -42,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        android:text="00:00"
+        android:text="@string/timeEnd"
         app:layout_constraintStart_toStartOf="@id/timeStart"
         app:layout_constraintTop_toTopOf="@id/labelEnd"
         />
@@ -51,9 +63,9 @@
         android:id="@+id/titleTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_marginTop="25dp"
-        android:text="TITLE TASK"
+       android:hint="@string/title"
         app:layout_constraintStart_toStartOf="@id/labelEnd"
         app:layout_constraintTop_toBottomOf="@id/labelEnd"/>
 
@@ -64,6 +76,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTask"
         />
+
+    <Button
+        android:id="@+id/saveTaskBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:text="@string/save_data"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,9 +10,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import java.util.*
-import kotlin.collections.ArrayList
 
-class CalendarFragment : Fragment() {
+class CalendarFragment : Fragment(), CellClickListener {
 
     private lateinit var taskAdapter: RVCalendarAdapter
 
@@ -28,8 +27,6 @@ class CalendarFragment : Fragment() {
         initRecyclerView()
         calendar.setFirstDayOfWeek(Calendar.MONDAY)
         calendar.refreshCalendar(Calendar.getInstance(Locale.getDefault()))
-
-
     }
 
     private fun receiveData(str: String) {
@@ -39,8 +36,7 @@ class CalendarFragment : Fragment() {
         val tasks: List<Tasks> = gson.fromJson(jsonFileString, listOfTasksType)
         val tmp : MutableList<Tasks> = mutableListOf()
         tasks.forEach {
-            val dt = formatDate(it.date_start)
-            if (dt == str) {
+            if (formatDate(it.date_start) == str) {
                 tmp.addAll(listOf(it))
                 taskAdapter.submitData(tmp)
             } else {
@@ -49,14 +45,11 @@ class CalendarFragment : Fragment() {
         }
     }
 
-
-
-
-
     private fun initRecyclerView() {
         recView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            taskAdapter = RVCalendarAdapter()
+            taskAdapter = RVCalendarAdapter(this@CalendarFragment)
+            setHasFixedSize(true)
             adapter = taskAdapter
         }
     }
@@ -66,10 +59,22 @@ class CalendarFragment : Fragment() {
 
         calendar.setOnDateClickListener {
             receiveData(formatDate(it.time))
+            val date = it.time
+            addNewTask.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putLong("todayDate", date)
+                (activity as MainActivity).navController.navigate(R.id.action_calendarFragment_to_newTaskFragment, bundle)
+            }
         }
-        addNewTask.setOnClickListener {
-            (activity as MainActivity).navController.navigate(R.id.action_calendarFragment_to_newTaskFragment)
-        }
+    }
+
+    override fun onCellClickListener(data: Tasks) {
+        val bundle = Bundle()
+        bundle.putLong("startTime", data.date_start)
+        bundle.putLong("endTime", data.date_finish)
+        bundle.putString("title", data.name)
+        bundle.putString("desc", data.description)
+        (activity as MainActivity).navController.navigate(R.id.action_calendarFragment_to_taskDescription, bundle)
     }
 }
 

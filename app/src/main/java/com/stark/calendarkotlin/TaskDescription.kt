@@ -1,19 +1,14 @@
 package com.stark.calendarkotlin
 
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_newtask.*
 import kotlinx.android.synthetic.main.fragment_task_description.*
-import java.lang.reflect.Array.set
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.*
+import kotlin.collections.ArrayList
 
 class TaskDescription : Fragment() {
 
@@ -22,19 +17,16 @@ class TaskDescription : Fragment() {
         return inflater.inflate(R.layout.fragment_task_description, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        arguments?.getString("date")?.let {
-            tv_date.text = it
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val startT = arguments?.getLong("startTime")
+        val endT = arguments?.getLong("endTime")
+        val title = arguments?.getString("title")
+        val description = arguments?.getString("desc")
+            timeStartDesc.text = formatTime(startT!!)
+            timeEndDesc.text = formatTime(endT!!)
+            titleTaskDesc.text = title
+            descriptionTaskDesc.text = description
     }
-
-
-
 }
 
-//            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm");
-//            val instant = Instant.ofEpochMilli(it.toLong())
-//            val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
-//            val str = formatter.format(date)

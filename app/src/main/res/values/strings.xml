@@ -2,4 +2,11 @@
     <string name="app_name">calendarKotlin</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save_data">SAVE DATA</string>
+    <string name="start">Start:</string>
+    <string name="timeStart">00:00</string>
+    <string name="end">End:</string>
+    <string name="timeEnd">00:00</string>
+    <string name="title">Title</string>
+    <string name="_10_10_2021">10.10.2021</string>
 </resources>
